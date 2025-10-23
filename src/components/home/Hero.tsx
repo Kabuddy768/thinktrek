@@ -1,195 +1,237 @@
-// ============================================
-// src/components/home/Hero/Hero.tsx (Modernized)
-// ============================================
-import { Link } from 'react-router-dom'
-import { ArrowRight, ChevronRight, Users, TrendingUp, Shield, Zap, Rocket } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ChevronRight, Users, TrendingUp, Shield, Zap, Rocket, CheckCircle, Award, Clock } from 'lucide-react';
 
 export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const features = [
     { 
-      icon: <Users size={28} />, 
+      icon: <Users size={24} />, 
       title: 'Client-Focused', 
-      desc: 'Tailored solutions for your business needs',
-      // Teal/Cyan color for modern look
-      color: 'from-cyan-400 to-teal-600',
-      delay: 800
+      desc: 'Tailored solutions for your unique business needs',
+      color: 'from-cyan-400 to-teal-500',
+      delay: 200
     },
     { 
-      icon: <TrendingUp size={28} />, 
+      icon: <TrendingUp size={24} />, 
       title: 'Growth Driven', 
-      desc: 'Scale seamlessly as you expand',
-      color: 'from-green-400 to-emerald-600',
-      delay: 900
+      desc: 'Scale seamlessly as your business expands',
+      color: 'from-emerald-400 to-green-500',
+      delay: 300
     },
     { 
-      icon: <Shield size={28} />, 
+      icon: <Shield size={24} />, 
       title: 'Secure & Reliable', 
-      desc: 'Enterprise-grade security standards',
-      color: 'from-purple-400 to-fuchsia-600',
-      delay: 1000
+      desc: 'Enterprise-grade security you can trust',
+      color: 'from-violet-400 to-purple-500',
+      delay: 400
     },
     { 
-      icon: <Zap size={28} />, 
-      title: 'Fast Implementation', 
+      icon: <Zap size={24} />, 
+      title: 'Rapid Deployment', 
       desc: 'Get up and running in days, not months',
-      // Softened orange accent
       color: 'from-amber-400 to-orange-500',
-      delay: 1100
+      delay: 500
     }
   ];
 
-  return (
-    // Updated background gradient for a darker, sleeker, more modern feel
-    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-indigo-900 to-gray-900 overflow-hidden">
-      
-      {/* Background Noise Texture (Replaced geometric SVG) */}
-      <div className="absolute inset-0 opacity-5 bg-[url('https://api.uifort.com/api/textures/noise')]"></div>
+  const trustBadges = [
+    { icon: <CheckCircle size={18} />, text: 'ISO Certified' },
+    { icon: <Award size={18} />, text: 'Award Winning' },
+    { icon: <Clock size={18} />, text: '10+ Years' }
+  ];
 
-      {/* Animated Blob Circles (Retained) */}
+  return (
+    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+      
+      {/* Animated gradient orbs with parallax */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-60 -right-60 w-[35rem] h-[35rem] bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob" />
-        <div className="absolute -bottom-60 -left-60 w-[35rem] h-[35rem] bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 w-[35rem] h-[35rem] bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000 transform -translate-x-1/2 -translate-y-1/2" />
+        <div 
+          className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-cyan-500/30 to-teal-500/30 rounded-full blur-3xl"
+          style={{
+            transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+        <div 
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-violet-500/20 to-purple-500/20 rounded-full blur-3xl"
+          style={{
+            transform: `translate(${-mousePosition.x * 0.3}px, ${-mousePosition.y * 0.3}px)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+        <div 
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-full blur-3xl"
+          style={{
+            transform: `translate(calc(-50% + ${mousePosition.x * 0.4}px), calc(-50% + ${mousePosition.y * 0.4}px))`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+        
+        {/* Main content centered */}
+        <div className="text-center mb-16 space-y-8">
           
-          {/* Left Content */}
-          <div className="text-white space-y-8 z-10 lg:col-span-7">
-            
-            {/* Tagline - Refined colors and border for a stronger glass effect */}
-            <div className="inline-block animate-fade-in">
-              <Link 
-                to="/solutions" 
-                className="group inline-flex items-center gap-2 bg-white bg-opacity-10 text-white px-5 py-2 rounded-full text-sm font-medium backdrop-blur-md border border-white border-opacity-20 hover:bg-opacity-15 transition-all shadow-md"
-              >
-                {/* Updated Rocket color to new accent */}
-                <Rocket size={16} className="text-cyan-300 group-hover:scale-110 transition-transform" />
-                <span className="font-medium">Business Automation Solutions</span>
-                <ChevronRight size={16} className="opacity-80 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-            
-            {/* Title - Main text color is white, span color is the new accent */}
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tighter animate-slide-up">
-              Transform Your Business with
-              <span className="block text-cyan-400 mt-4 leading-none">Smart Automation</span>
-            </h1>
-            
-            {/* Description */}
-            <p className="text-xl md:text-2xl text-indigo-200 leading-relaxed max-w-2xl animate-slide-up animation-delay-200">
-              Streamline operations with cutting-edge **accounting, ERP, and warehouse management** solutions designed for small and medium-sized businesses in Kenya.
-            </p>
-
-            {/* CTAs - Primary CTA updated to a modern gradient */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up animation-delay-400">
-              <Link
-                to="/contact"
-                // New Gradient CTA for primary focus
-                className="group bg-gradient-to-r from-cyan-400 to-teal-500 text-slate-900 px-9 py-4 rounded-xl font-bold hover:shadow-cyan-400/50 transition-all transform hover:scale-[1.02] active:scale-95 shadow-xl hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-cyan-300/50 flex items-center justify-center gap-2"
-              >
-                Request Demo
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/products"
-                className="group bg-white bg-opacity-10 backdrop-blur-sm text-white border border-white border-opacity-30 px-9 py-4 rounded-xl font-semibold hover:bg-opacity-15 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 flex items-center justify-center gap-2"
-              >
-                View Products
-                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-            {/* Stats - Text color updated to new accent */}
-            <div className="grid grid-cols-3 gap-6 pt-8 mt-8 border-t border-indigo-400 border-opacity-30 animate-fade-in animation-delay-600">
-              <div className="text-center sm:text-left">
-                <div className="text-4xl font-extrabold text-cyan-400 mb-1">500+</div>
-                <div className="text-sm text-indigo-200 uppercase tracking-wider">Happy Clients</div>
-              </div>
-              <div className="text-center sm:text-left">
-                <div className="text-4xl font-extrabold text-cyan-400 mb-1">4</div>
-                <div className="text-sm text-indigo-200 uppercase tracking-wider">Core Products</div>
-              </div>
-              <div className="text-center sm:text-left">
-                <div className="text-4xl font-extrabold text-cyan-400 mb-1">24/7</div>
-                <div className="text-sm text-indigo-200 uppercase tracking-wider">Support</div>
-              </div>
+          {/* Animated badge */}
+          <div className={`inline-block transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+            <div className="group inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 backdrop-blur-xl border border-cyan-500/20 text-cyan-300 px-6 py-3 rounded-full text-sm font-medium hover:border-cyan-400/40 transition-all cursor-pointer shadow-lg shadow-cyan-500/5">
+              <Rocket size={16} className="group-hover:rotate-12 transition-transform" />
+              <span className="font-semibold">Transforming Kenyan Businesses</span>
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
             </div>
           </div>
+          
+          {/* Main headline with stagger animation */}
+          <div className="space-y-6">
+            <h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <span className="block text-white mb-2">Transform Your</span>
+              <span className="block bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
+                Business Operations
+              </span>
+            </h1>
+            
+            <p className={`text-lg sm:text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Streamline your operations with cutting-edge <span className="text-cyan-400 font-semibold">accounting</span>, <span className="text-teal-400 font-semibold">ERP</span>, and <span className="text-emerald-400 font-semibold">warehouse management</span> solutions designed for Kenyan SMEs.
+            </p>
+          </div>
 
-          {/* Right Content - Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 z-10 lg:col-span-5">
-            {features.map((feature, idx) => (
-              <div 
-                key={idx} 
-                // Increased border opacity slightly
-                className="group bg-white bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 rounded-2xl p-6 hover:bg-opacity-20 transition-all transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/30 cursor-pointer animate-fade-in"
-                style={{ animationDelay: `${feature.delay}ms` }}
-              >
-                {/* Icon Container: Larger padding for visual weight (p-4) */}
-                <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${feature.color} text-white mb-4 shadow-lg group-hover:scale-105 transition-transform`}>
-                  {feature.icon}
-                </div>
-                <h3 className="text-white font-bold text-xl mb-2">{feature.title}</h3>
-                <p className="text-indigo-200 text-base leading-relaxed">{feature.desc}</p>
+          {/* CTAs with enhanced styling */}
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <button className="group relative bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-8 py-4 rounded-xl font-bold text-lg overflow-hidden shadow-xl shadow-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/40 transition-all transform hover:scale-105 active:scale-95">
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative flex items-center gap-2">
+                Request Free Demo
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </button>
+            
+            <button className="group relative bg-white/5 backdrop-blur-xl border-2 border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/20 transition-all">
+              <span className="flex items-center gap-2">
+                Explore Solutions
+                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </button>
+          </div>
+
+          {/* Trust badges */}
+          <div className={`flex flex-wrap justify-center gap-6 pt-4 transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            {trustBadges.map((badge, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-slate-400 text-sm">
+                <div className="text-cyan-400">{badge.icon}</div>
+                <span>{badge.text}</span>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Bottom Wave Separator REMOVED for a cleaner transition */}
-      
-      {/* Scroll indicator (Retained) */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-        <div className="w-6 h-10 border-2 border-white border-opacity-50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-white rounded-full" />
+        {/* Feature cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {features.map((feature, idx) => (
+            <div
+              key={idx}
+              className={`group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ 
+                transitionDelay: `${feature.delay}ms`,
+                transform: isVisible ? 'translateY(0)' : 'translateY(2rem)'
+              }}
+            >
+              {/* Hover gradient effect */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`} />
+              
+              <div className="relative z-10">
+                {/* Icon with gradient background */}
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color} text-white mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  {feature.icon}
+                </div>
+                
+                <h3 className="text-white font-bold text-lg mb-2 group-hover:text-cyan-300 transition-colors">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
+                  {feature.desc}
+                </p>
+              </div>
+
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-cyan-500/0 to-cyan-500/20 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+          ))}
+        </div>
+
+        {/* Stats section */}
+        <div className={`grid grid-cols-3 gap-8 max-w-4xl mx-auto mt-20 pt-12 border-t border-white/10 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="text-center group cursor-pointer">
+            <div className="text-5xl font-black bg-gradient-to-br from-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
+              500+
+            </div>
+            <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">
+              Happy Clients
+            </div>
+          </div>
+          <div className="text-center group cursor-pointer">
+            <div className="text-5xl font-black bg-gradient-to-br from-violet-400 to-purple-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
+              4
+            </div>
+            <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">
+              Core Products
+            </div>
+          </div>
+          <div className="text-center group cursor-pointer">
+            <div className="text-5xl font-black bg-gradient-to-br from-emerald-400 to-green-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
+              24/7
+            </div>
+            <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">
+              Support Available
+            </div>
+          </div>
         </div>
       </div>
-      
-      {/* Styles for custom animations and delays (Retained) */}
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-cyan-400/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 bg-gradient-to-b from-cyan-400 to-transparent rounded-full animate-scroll" />
+        </div>
+      </div>
+
       <style>{`
-        @keyframes blob {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
         }
-        .animate-blob {
-          animation: blob 7s infinite;
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
         }
-        .animation-delay-2000 {
-          animation-delay: 2s;
+        @keyframes scroll {
+          0% { transform: translateY(0); opacity: 1; }
+          100% { transform: translateY(12px); opacity: 0; }
         }
-        .animation-delay-4000 {
-          animation-delay: 4s;
+        .animate-scroll {
+          animation: scroll 1.5s ease-in-out infinite;
         }
-
-        @keyframes fadeIn {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-slide-up {
-          animation: slideUp 0.8s ease-out forwards;
-        }
-        .animation-delay-200 { animation-delay: 0.2s; }
-        .animation-delay-400 { animation-delay: 0.4s; }
-        .animation-delay-600 { animation-delay: 0.6s; }
       `}</style>
     </section>
-  )
+  );
 }
