@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutPage from "./pages/AboutPage"
 import LandingPage from "./pages/Landing"
 import Navbar from "./components/nav/Navbar"
+import Blog from "./components/blog/Blog"
 // import Services from "./pages/Services";
 // // import Blog from "./pages/Blog";
 import ProductPage from "./pages/ProductPage"
@@ -18,6 +19,7 @@ export default function App() {
              <Route path="/products" element={<ProductPage />} />
              <Route path="/about" element={<AboutPage />} />
              <Route path="/contact" element={<ContactPage />} />
+             <Route path="/blog" element={<Blog />} />
             {/* <Route path="/about" element={<AboutPage />} /> */}
             
             {/* <Route path="/blog" element={<Blog />} /> */}
