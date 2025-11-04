@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { Request, Response } from 'express';
 import * as authorService from './author.service';
@@ -145,31 +145,103 @@ export const verifyAuthorEmail = async (req: Request, res: Response) => {
 };
 
 // Author login
+// export const loginAuthor = async (req: Request, res: Response) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     if (!email || !password) {
+//       return res.status(400).json({ error: "Email and password are required" });
+//     }
+
+//     // Check if author exists
+//     const author = await authorService.getAuthorByEmail(email);
+//     if (!author) {
+//       return res.status(401).json({ error: "Invalid email or password" });
+//     }
+
+//     // Check if email is verified
+//     if (!author.is_verified) {
+//       return res.status(401).json({ error: "Please verify your email before logging in" });
+//     }
+
+//     // Verify password
+//     const passwordMatch = bcrypt.compareSync(password, author.password as string);
+//     if (!passwordMatch) {
+//       return res.status(401).json({ error: "Invalid email or password" });
+//     }
+
+//     // Create JWT token
+//     const payload = {
+//       sub: author.author_id,
+//       author_id: author.author_id,
+//       first_name: author.first_name,
+//       last_name: author.last_name,
+//       email: author.email,
+//       exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7) // 7 days
+//     };
+
+//     const token = jwt.sign(payload, env.JWT_SECRET);
+
+//     res.status(200).json({
+//       message: "Login successful",
+//       token,
+//       author: {
+//         author_id: author.author_id,
+//         first_name: author.first_name,
+//         last_name: author.last_name,
+//         email: author.email,
+//         image_url: author.image_url,
+//         is_verified: author.is_verified
+//       }
+//     });
+
+//   } catch (error: any) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+// Author login
 export const loginAuthor = async (req: Request, res: Response) => {
+  console.log('=== LOGIN ATTEMPT STARTED ===');
+  console.log('Request body:', { email: req.body.email, password: '***' });
+  
   try {
     const { email, password } = req.body;
 
     if (!email || !password) {
+      console.log('Missing email or password');
       return res.status(400).json({ error: "Email and password are required" });
     }
 
+    console.log('Step 1: Finding author by email...');
     // Check if author exists
     const author = await authorService.getAuthorByEmail(email);
     if (!author) {
+      console.log('Author not found');
       return res.status(401).json({ error: "Invalid email or password" });
     }
+    console.log('Step 1 SUCCESS: Author found');
 
+    console.log('Step 2: Checking verification status...');
     // Check if email is verified
     if (!author.is_verified) {
+      console.log('Email not verified');
       return res.status(401).json({ error: "Please verify your email before logging in" });
     }
+    console.log('Step 2 SUCCESS: Email is verified');
 
+    console.log('Step 3: Comparing password...');
     // Verify password
     const passwordMatch = bcrypt.compareSync(password, author.password as string);
     if (!passwordMatch) {
+      console.log('Password does not match');
       return res.status(401).json({ error: "Invalid email or password" });
     }
+    console.log('Step 3 SUCCESS: Password matches');
 
+    console.log('Step 4: Creating JWT token...');
+    console.log('JWT_SECRET exists:', !!env.JWT_SECRET);
+    console.log('JWT_SECRET length:', env.JWT_SECRET?.length);
+    
     // Create JWT token
     const payload = {
       sub: author.author_id,
@@ -181,7 +253,9 @@ export const loginAuthor = async (req: Request, res: Response) => {
     };
 
     const token = jwt.sign(payload, env.JWT_SECRET);
+    console.log('Step 4 SUCCESS: Token created');
 
+    console.log('Step 5: Sending response...');
     res.status(200).json({
       message: "Login successful",
       token,
@@ -194,9 +268,20 @@ export const loginAuthor = async (req: Request, res: Response) => {
         is_verified: author.is_verified
       }
     });
+    console.log('Step 5 SUCCESS: Response sent');
+    console.log('=== LOGIN COMPLETED ===');
 
   } catch (error: any) {
-    res.status(500).json({ error: error.message });
+    console.error('=== LOGIN ERROR ===');
+    console.error('Error type:', error.constructor.name);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    console.error('==================');
+    
+    res.status(500).json({ 
+      error: error.message,
+      ...(process.env.NODE_ENV === 'development' && { stack: error.stack })
+    });
   }
 };
 
