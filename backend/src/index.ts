@@ -12,9 +12,12 @@ dotenv.config();
 
 const app = express();
 
+// --- Trust proxy - MUST be first, before any middleware ---
+app.set('trust proxy', 1);
+
 // --- Security middleware ---
 app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" } // Allow serving uploaded files
+  crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 
 // --- CORS configuration ---
