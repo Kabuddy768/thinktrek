@@ -24,7 +24,7 @@ jobs:
 
       # Step 3: Install and build frontend
       - name: Build frontend
-        working-directory: ./frontend
+        working-directory: ./thinktrek-business-site
         run: |
           npm install
           npm run build
