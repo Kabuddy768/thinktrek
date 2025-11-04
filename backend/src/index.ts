@@ -21,11 +21,9 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
   .map(origin => origin.trim());
 
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests from non-browser clients like Postman, curl
-    if (!origin) return callback(null, true);
-
+const corsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    if (!origin) return callback(null, true); // allow non-browser requests
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -35,15 +33,12 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
+};
 
-// Handle preflight OPTIONS requests globally
-app.options('*', cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors(corsOptions));
+
+// Handle preflight OPTIONS requests globally (Express 5 compatible)
+app.options('/*', cors(corsOptions));
 
 // --- Body parser ---
 app.use(express.json());
