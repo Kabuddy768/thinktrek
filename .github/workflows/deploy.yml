@@ -1,0 +1,44 @@
+name: CI/CD Pipeline
+
+# Run this workflow on pushes to the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # Step 3: Install and build frontend
+      - name: Build frontend
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run build
+
+      # Step 4: Install and test backend
+      - name: Build and test backend
+        working-directory: ./backend
+        run: |
+          npm install
+          npm run build
+          npm test
+
+      # Step 5 (Optional): Deploy to Render or Vercel automatically
+      # For this, you would configure your deploy commands or tokens
+      # Example (Render uses webhook-based deploys):
+      # - name: Trigger Render Deploy
+      #   run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
