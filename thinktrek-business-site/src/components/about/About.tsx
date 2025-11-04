@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Users, Target, Award, TrendingUp, CheckCircle, Lightbulb, Shield, Zap, Goal, ArrowRight } from 'lucide-react'
 
 // --- Helper Component: ServiceCard (Unchanged, but imported) ---
-const ServiceCard = ({ icon: Icon, title, desc }) => (
+const ServiceCard = ({ icon: Icon, title, desc }: { icon: any; title: string; desc: string }) => (
     <div className="space-y-3">
         <Icon className="text-cyan-600" size={32} />
         <h4 className="font-bold text-xl text-gray-900">{title}</h4>
