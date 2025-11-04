@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutPage from "./pages/AboutPage"
 import LandingPage from "./pages/Landing"
 import Navbar from "./components/nav/Navbar"
+import ScrollToTop from './pages/ScrollToTop'
 // import Services from "./pages/Services";
 // // import Blog from "./pages/Blog";
 import ProductPage from "./pages/ProductPage"
@@ -20,6 +21,7 @@ import Register from "./components/auth/Register";
 export default function App() {
   return (
     <Router>
+    <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main>
