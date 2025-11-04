@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const API_BASE_URL = 'http://localhost:8088';
+// Use environment variable instead of hardcoded URL
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8088';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -15,7 +16,6 @@ api.interceptors.request.use((config) => {
 });
 
 // =================== AUTHORS =================== //
-// 👇 ADD THE AUTHORS API HERE 👇
 export const authorsAPI = {
   register: (data: {
     first_name: string;
@@ -49,9 +49,6 @@ export const blogsAPI = {
   create: (data: any) => api.post('/blogs', data),
   update: (id: number, data: any) => api.put(`/blogs/${id}`, data),
   delete: (id: number) => api.delete(`/blogs/${id}`),
-
-
-  
 };
 
 export default api;

@@ -1,6 +1,7 @@
 // backend/src/modules/middleware/authMiddleware.ts
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { env } from '../config/env';
 
 interface AuthRequest extends Request {
   user?: {
@@ -25,19 +26,11 @@ export const authenticated = (req: AuthRequest, res: Response, next: NextFunctio
     });
   }
 
-  const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    console.error('JWT_SECRET not configured');
-    return res.status(500).json({ error: 'Server configuration error' });
-  }
-
   try {
-    const decoded = jwt.verify(token, secret) as any;
+    const decoded = jwt.verify(token, env.JWT_SECRET) as any;
     req.user = decoded;
     next();
   } catch (error: any) {
-    console.error('Token verification failed:', error.message);
-
     let message = 'Please login again';
     if (error.name === 'TokenExpiredError') {
       message = 'Session expired, please login again';

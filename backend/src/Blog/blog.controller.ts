@@ -41,13 +41,10 @@ export const getBlogsByAuthor = async (req: Request, res: Response) => {
   }
 };
 
-// ✅ UPDATE THIS - Extract image_url from request body
 export const createBlog = async (req: Request, res: Response) => {
   try {
-    const { title, content, image_url } = req.body; // ✅ Add image_url
+    const { title, content, image_url } = req.body;
     const user = (req as any).user;
-
-    console.log('📝 Creating blog:', { title, content, image_url, author_id: user.author_id }); // ✅ Debug log
 
     if (!title || !content) {
       return res.status(400).json({ message: "Title and content are required" });
@@ -63,10 +60,8 @@ export const createBlog = async (req: Request, res: Response) => {
       title, 
       content, 
       author_id,
-      image_url // ✅ Pass image_url
+      image_url
     });
-
-    console.log('✅ Blog created:', newBlog); // ✅ Debug log
 
     res.status(201).json(newBlog);
   } catch (err) {
@@ -75,7 +70,6 @@ export const createBlog = async (req: Request, res: Response) => {
   }
 };
 
-// ✅ UPDATE THIS - Extract image_url from request body
 export const updateBlog = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
@@ -83,10 +77,8 @@ export const updateBlog = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Invalid ID" });
     }
 
-    const { title, content, image_url } = req.body; // ✅ Add image_url
+    const { title, content, image_url } = req.body;
     const user = (req as any).user;
-
-    console.log('✏️ Updating blog:', { id, title, content, image_url, author_id: user.author_id }); // ✅ Debug log
 
     // Check if blog exists
     const existingBlog = await blogService.getBlogByIdService(id);
@@ -102,10 +94,8 @@ export const updateBlog = async (req: Request, res: Response) => {
     const updated = await blogService.updateBlogService(id, { 
       title, 
       content,
-      image_url // ✅ Pass image_url
+      image_url
     });
-
-    console.log('✅ Blog updated:', updated); // ✅ Debug log
 
     res.json(updated);
   } catch (err) {
@@ -135,8 +125,6 @@ export const deleteBlog = async (req: Request, res: Response) => {
     }
 
     await blogService.deleteBlogService(id);
-    
-    console.log('✅ Blog deleted:', id); // ✅ Debug log
 
     res.json({ message: "Blog deleted successfully" });
   } catch (err) {

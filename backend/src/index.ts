@@ -1,74 +1,40 @@
-// import express from 'express';
-// import fs from 'fs';
-// import path from 'path';
-
-// import carRoutes from './Car/car.router';
-// import uploadRouter from './uploads/upload.router';
-// // import { dirname } from 'path'
-// // import { fileURLToPath } from 'url'
-// import customerRoutes from './Customer/customer.router';
-// import locationRoutes from './Location/location.router';
-// import reservationRoutes from './Reservation/reservation.router';
-// import bookingRoutes from './Booking/booking.router';
-// import paymentRoutes from './Payment/payment.router';
-// import maintenanceRoutes from './Maintenance/maintenance.router';
-// import insuranceRoutes from './Insurance/insurance.router';
-// import cors from "cors";
-
-// const app = express();
-
-// // Define the uploads directory path
-// // Define the uploads directory path
-// // Use CommonJS __dirname directly
-// app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
-
-// // Create uploads directory if it doesn't exist
-// const uploadsDir = path.join(__dirname, '..', 'uploads')
-// if (!fs.existsSync(uploadsDir)) {
-//   fs.mkdirSync(uploadsDir, { recursive: true })
-// }
-
-
-// const PORT = 3000;
-
-// app.use(cors());
-// app.use(express.json({limit:'10mb'})); // Middleware to parse JSON bodies
-// app.use(express.urlencoded({ limit: '10mb', extended: true }));
-
-// app.use('/uploads', express.static("uploads"));
-// // Register customer routes
-// customerRoutes(app);
-
-// // Serve uploads folder statically
-// app.use('/uploads', express.static(uploadsDir));
-
-// // Other API routes
-// app.use('/api/cars', carRoutes);
-// app.use('/api/upload', uploadRouter);
-
-// app.use('/api/locations', locationRoutes);
-// app.use('/api/reservations', reservationRoutes);
-// app.use('/api/bookings', bookingRoutes);
-// app.use('/api/payments', paymentRoutes);
-// app.use('/api/maintenance', maintenanceRoutes);
-// app.use('/api/insurance', insuranceRoutes);
-
-// app.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-// });
-// backend/src/index.ts or app.ts
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import dotenv from 'dotenv';
 import authorRoutes from './Author/author.router';
 import blogRoutes from './Blog/blog.router';
 import path from 'path';
 import fs from 'fs';
 import uploadRouter from './uploads/upload.router';
 
+dotenv.config();
 const app = express();
 
-// Middleware
-app.use(cors());
+// Security middleware
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" } // Allow serving uploaded files
+}));
+
+// CORS configuration with whitelist
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '*').split(',').map(origin => origin.trim());
+
+app.use(cors({
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // Create uploads directory if it doesn't exist
@@ -80,17 +46,16 @@ if (!fs.existsSync(uploadsDir)) {
 // Serves static uploads folder
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
-
-
 // Routes
 authorRoutes(app);
 blogRoutes(app);
 app.use('/upload', uploadRouter);
 
 const PORT = process.env.PORT || 8088;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT} in ${NODE_ENV} mode`);
 });
 
 export default app;

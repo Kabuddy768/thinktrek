@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   
     "studio": "drizzle-kit studio",
     "push": "drizzle-kit push",
     "dev": "tsx watch src/index.ts",
@@ -46,7 +45,9 @@
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.43.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
     "googleapis": "^149.0.0",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.1",
     "nodemailer": "^7.0.3",

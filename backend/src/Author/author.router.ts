@@ -10,11 +10,12 @@ import {
   verifyAuthorEmail,
 } from "./author.controller";
 import { authenticated } from "../middleware/bearAuth";
+import { authLimiter } from "../middleware/rateLimiter";
 
 const authorRoutes = (app: Express) => {
 
-  // Public routes
-  app.post("/authors/register", async (req, res, next) => {
+  // Public routes with rate limiting
+  app.post("/authors/register", authLimiter, async (req, res, next) => {
     try {
       await createAuthor(req, res);
     } catch (error) {
@@ -22,7 +23,7 @@ const authorRoutes = (app: Express) => {
     }
   });
 
-  app.post("/authors/verify", async (req, res, next) => {
+  app.post("/authors/verify", authLimiter, async (req, res, next) => {
     try {
       await verifyAuthorEmail(req, res);
     } catch (error) {
@@ -30,7 +31,7 @@ const authorRoutes = (app: Express) => {
     }
   });
 
-  app.post("/authors/login", async (req, res, next) => {
+  app.post("/authors/login", authLimiter, async (req, res, next) => {
     try {
       await loginAuthor(req, res);
     } catch (error) {

@@ -1,9 +1,10 @@
-
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 import { Request, Response } from 'express';
 import * as authorService from './author.service';
 import jwt from 'jsonwebtoken';
 import { sendWelcomeEmail, sendVerificationEmail } from '../email/email.service';
+import { env } from '../config/env';
 
 // GET all authors
 export const getAllAuthors = async (req: Request, res: Response) => {
@@ -56,7 +57,7 @@ export const createAuthor = async (req: Request, res: Response) => {
     }
 
     // Generate verification code
-    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+    const verificationCode = crypto.randomInt(100000, 999999).toString();
 
     // Hash password
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -74,9 +75,7 @@ export const createAuthor = async (req: Request, res: Response) => {
 
     // Send verification email
     const authorName = `${newAuthor.first_name} ${newAuthor.last_name}`;
-    sendVerificationEmail(newAuthor.email, authorName, verificationCode)
-      .then(() => console.log(`Verification email sent to ${newAuthor.email}`))
-      .catch(err => console.error('Verification email send failed:', err.message));
+    sendVerificationEmail(newAuthor.email, authorName, verificationCode);
 
     res.status(201).json({
       message: "Author registered successfully. Please check your email for verification code.",
@@ -127,9 +126,7 @@ export const verifyAuthorEmail = async (req: Request, res: Response) => {
     if (updated) {
       // Send welcome email after verification
       const authorName = `${author.first_name} ${author.last_name}`;
-      sendWelcomeEmail(author.email, authorName)
-        .then(() => console.log(`Welcome email sent to ${author.email}`))
-        .catch(err => console.error('Welcome email send failed:', err.message));
+      sendWelcomeEmail(author.email, authorName);
     }
 
     res.status(200).json({
@@ -174,11 +171,6 @@ export const loginAuthor = async (req: Request, res: Response) => {
     }
 
     // Create JWT token
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      throw new Error("JWT_SECRET not configured");
-    }
-
     const payload = {
       sub: author.author_id,
       author_id: author.author_id,
@@ -188,7 +180,7 @@ export const loginAuthor = async (req: Request, res: Response) => {
       exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7) // 7 days
     };
 
-    const token = jwt.sign(payload, secret);
+    const token = jwt.sign(payload, env.JWT_SECRET);
 
     res.status(200).json({
       message: "Login successful",
@@ -269,4 +261,4 @@ export const deleteAuthor = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
-};
+}
