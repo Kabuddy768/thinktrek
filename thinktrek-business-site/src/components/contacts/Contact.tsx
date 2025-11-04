@@ -437,4 +437,15 @@ ${formData.message}
                   <p className="text-slate-500 text-xs">Central Business District</p>
                   <div className="mt-6 pt-6 border-t border-white/10">
                     <p className="text-slate-400 text-xs italic">
-                      Exact address available up
+                      Exact address available upon request
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
