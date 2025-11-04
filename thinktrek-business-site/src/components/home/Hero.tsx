@@ -8,7 +8,7 @@ export default function Hero() {
   useEffect(() => {
     setIsVisible(true);
     
-   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+   const handleMouseMove = (e:MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth - 0.5) * 20,
         y: (e.clientY / window.innerHeight - 0.5) * 20
