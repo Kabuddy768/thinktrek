@@ -9,6 +9,7 @@ import blogRoutes from './Blog/blog.router';
 import uploadRouter from './uploads/upload.router';
 
 dotenv.config();
+
 const app = express();
 
 // --- Security middleware ---
@@ -19,26 +20,17 @@ app.use(helmet({
 // --- CORS configuration ---
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
-  .map(origin => origin.trim());
+  .map(origin => origin.trim())
+  .filter(origin => origin.length > 0);
 
 const corsOptions = {
-  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    if (!origin) return callback(null, true); // allow non-browser requests
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS policy: Origin ${origin} not allowed`));
-    }
-  },
+  origin: allowedOrigins.length > 0 ? allowedOrigins : '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));
-
-// Handle preflight OPTIONS requests globally (Express 5 compatible)
-app.options('*', cors(corsOptions));
 
 // --- Body parser ---
 app.use(express.json());
@@ -57,18 +49,17 @@ authorRoutes(app);
 blogRoutes(app);
 app.use('/upload', uploadRouter);
 
-// --- Catch-all route for health check or SPA fallback if needed ---
+// --- Health check route ---
 app.get('/', (_req, res) => {
-  res.send('API is running 🚀');
+  res.json({ status: 'OK', message: 'API is running 🚀' });
 });
 
 // --- Error handling middleware ---
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  console.error(err.stack);
-  if (err.message.includes('CORS')) {
-    return res.status(403).json({ message: err.message });
-  }
-  res.status(500).json({ message: 'Internal Server Error' });
+  console.error('Error:', err.message);
+  res.status(err.status || 500).json({ 
+    message: err.message || 'Internal Server Error' 
+  });
 });
 
 // --- Start server ---
