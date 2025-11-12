@@ -24,7 +24,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-gray-400">
                 <MapPin size={16} />
-                <span>Nairobi, Kenya</span>
+                <span>Kiambu Road</span><br />
+                <span>Feruzi Towers</span>
               </div>
             </div>
           </div>

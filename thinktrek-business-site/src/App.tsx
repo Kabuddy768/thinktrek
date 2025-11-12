@@ -8,7 +8,7 @@ import ScrollToTop from './pages/ScrollToTop'
 // // import Blog from "./pages/Blog";
 import ProductPage from "./pages/ProductPage"
 import ContactPage from "./pages/ContactPage"
-import IqRetailPage from "./pages/IqRetailPge";
+import IqRetailPage from "./pages/IqRetailPage";
 import PalladiumPage from "./pages/PalladiumPage";
 import Sage200Page from "./pages/Sage200Page";
 import XactErpPage from "./pages/XactErPage";
@@ -18,6 +18,8 @@ import BlogList from "./pages/BlogList";
 import Login from "./components/auth/Login";
 import Verification from "./components/auth/Verification";
 import Register from "./components/auth/Register";
+import PartnersPage from "./pages/PartnersPage";
+
 export default function App() {
   return (
     <Router>
@@ -36,6 +38,7 @@ export default function App() {
              <Route path="/products" element={<ProductPage />} />
              <Route path="/about" element={<AboutPage />} />
              <Route path="/contact" element={<ContactPage />} />
+             <Route path="/partners" element={<PartnersPage />} />
              
              <Route path="/products/palladium-accounting" element={<PalladiumPage />} />
 <Route path="/products/iq-retail" element={<IqRetailPage />} />

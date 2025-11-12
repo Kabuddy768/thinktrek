@@ -31,9 +31,11 @@ export default function Navigation() {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Products', path: '/products' },
-    { name: 'About', path: '/about' },
+    { name: 'Partners', path: '/partners' },
     { name: 'Blog', path: '/blog' },
+    { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
+     
   ];
 
   const isHome = location.pathname === '/';
@@ -47,16 +49,25 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          <Link to="/" className="shrink-0 flex items-center gap-2">
+          {/* 1. Adjusted logo container: remove shrink-0 and added flex-1 to push the rest of the content */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3"> 
+            {/* 2. Increased logo size classes */}
+            <img
+              src="\images\logo\Thinktrek-300x144.jpg"
+              alt="Thinktrek Business Solutions"
+              className="h-12 w-12 sm:h-14 sm:w-14 object-contain"
+            />
             <h1
-              className={`text-2xl font-bold transition-colors ${
+              className={`text-base sm:text-xl lg:text-2xl font-bold transition-colors ${
                 scrolled || !isHome ? 'text-blue-600' : 'text-white'
               }`}
             >
-              Thinktrek
+              <span className="hidden sm:inline">Thinktrek Business Solutions Ltd</span>
+              <span className="sm:hidden">Thinktrek</span>
             </h1>
           </Link>
 
+          {/* 3. The main navigation links and user controls are wrapped in a container that uses flex-grow to push it to the right */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -74,14 +85,13 @@ export default function Navigation() {
               </Link>
             ))}
 
-            {/* REMOVED: Sign In button - only show controls if already authenticated */}
             {isAuthenticated && (
               <div className="flex items-center space-x-4 border-l border-gray-200 pl-4">
                 <div className="hidden md:flex flex-col items-end">
-                  <span className="text-sm font-semibold text-gray-800">
+                  <span className={`text-sm font-semibold ${scrolled || !isHome ? 'text-gray-800' : 'text-white'}`}>
                     {user?.first_name} {user?.last_name}
                   </span>
-                  <span className="text-xs text-gray-500">{user?.email}</span>
+                  <span className={`text-xs ${scrolled || !isHome ? 'text-gray-500' : 'text-gray-200'}`}>{user?.email}</span>
                 </div>
 
                 {user?.image_url && (
@@ -94,7 +104,7 @@ export default function Navigation() {
 
                 <Link
                   to="/admin/blog"
-                  className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
+                  className={`flex items-center gap-2 transition-colors ${scrolled || !isHome ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'}`}
                 >
                   <FaUser />
                   <span className="hidden sm:inline">Dashboard</span>

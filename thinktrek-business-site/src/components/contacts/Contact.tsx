@@ -75,16 +75,17 @@ ${formData.message}
     {
       icon: <Phone size={22} />,
       title: "Call Us",
-      content: "+254 XXX XXX XXX",
+      content: "+254 726 386 202",
       subtext: "Mon-Fri, 8AM - 6PM EAT",
-      link: "tel:+254XXXXXXXXX",
+      link: "tel:+254726386202",
       gradient: "from-emerald-400 to-green-500"
     },
     {
       icon: <MapPin size={22} />,
       title: "Visit Us",
-      content: "Nairobi, Kenya",
-      subtext: "Central business district",
+      content: "Kiambu Road",
+      subtext: "Feruzi Towers",
+      subtext2: "6th Floor, Wing A–D",
       link: "#",
       gradient: "from-violet-400 to-purple-500"
     },
@@ -202,6 +203,7 @@ ${formData.message}
                   </h3>
                   <p className="text-slate-300 text-sm font-medium mb-1">{info.content}</p>
                   <p className="text-slate-500 text-xs">{info.subtext}</p>
+                  {info.subtext2 && <p className="text-slate-500 text-xs">{info.subtext2}</p>}
                 </div>
               </a>
             ))}
@@ -432,13 +434,16 @@ ${formData.message}
                   <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 text-white mb-4 shadow-lg">
                     <MapPin size={32} />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Visit Our Office</h3>
-                  <p className="text-slate-400 text-sm mb-1">Nairobi, Kenya</p>
-                  <p className="text-slate-500 text-xs">Central Business District</p>
-                  <div className="mt-6 pt-6 border-t border-white/10">
-                    <p className="text-slate-400 text-xs italic">
-                      Exact address available upon request
+                <h3 className="text-xl font-bold text-white mb-2">Visit Our Office</h3>
+                    <p className="text-slate-400 text-sm mb-1">Kiambu Road</p>
+                    <p className="text-slate-200 text-base font-semibold tracking-wide">
+                      Feruzi Towers
                     </p>
+                    <div className="mt-6 pt-6 border-t border-white/10">
+                      <p className="text-slate-400 text-xs italic">
+                        6th Floor, Wing A–D
+                      </p>
+                  
                   </div>
                 </div>
               </div>

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "TechCorp",
+    "logo": "/logos/techcorp.png",
+    "website": "https://techcorp.com"
+  },
+  {
+    "name": "GreenEnergy",
+    "logo": "/logos/greenenergy.png",
+    "website": "https://greenenergy.io"
+  },
+  {
+    "name": "FinEdge",
+    "logo": "/logos/finedge.png",
+    "website": "https://finedge.co"
+  }
+]
