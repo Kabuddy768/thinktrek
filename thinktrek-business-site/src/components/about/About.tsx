@@ -76,15 +76,7 @@ export default function AboutPage() {
                     <p className="text-xl md:text-2xl text-indigo-200 max-w-3xl mx-auto leading-relaxed">
                         Empowering Kenyan businesses with world-class automation solutions that streamline operations and accelerate growth.
                     </p>
-                    {/* CTA Button placeholder for visual consistency */}
-                    <div className="pt-10">
-                        <Link 
-                            to="/contact" 
-                            className="inline-block bg-gradient-to-r from-cyan-400 to-teal-500 text-slate-900 px-8 py-3 rounded-xl font-semibold text-lg hover:shadow-cyan transition-all transform hover:scale-[1.05] shadow-xl"
-                        >
-                            Explore Solutions
-                        </Link>
-                    </div>
+                    
                 </div>
                 
                 {/* Wave Separator REMOVED for cleaner design, rely on shadow/margin */}

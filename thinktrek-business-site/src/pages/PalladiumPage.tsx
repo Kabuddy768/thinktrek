@@ -94,7 +94,7 @@ export default function PalladiumPage() {
               Stop wrestling with spreadsheets. Palladium gives you real-time financial insights, automated compliance, and the confidence to make data-driven decisions.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            {/* <div className="flex flex-wrap gap-4 mb-8">
               <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all">
                 Schedule Free Demo
                 <ArrowRight className="w-5 h-5" />
@@ -103,7 +103,7 @@ export default function PalladiumPage() {
                 <Play className="w-5 h-5" />
                 Watch 3-Min Overview
               </button>
-            </div>
+            </div> */}
 
             <div className="flex items-center gap-8 text-sm text-slate-600">
               <div className="flex items-center gap-2">
@@ -250,69 +250,6 @@ export default function PalladiumPage() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Don't Just Take Our Word For It
-            </h2>
-            <p className="text-xl text-slate-600">
-              See how Kenyan businesses are thriving with Palladium
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, i) => (
-              <div key={i} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 shadow-md border border-indigo-100">
-                <div className="mb-6">
-                  <Award className="w-12 h-12 text-indigo-600 mb-4" />
-                  <p className="text-lg text-slate-700 italic mb-4">"{testimonial.quote}"</p>
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900">{testimonial.author}</p>
-                  <p className="text-sm text-slate-600">{testimonial.role}</p>
-                  <p className="text-xs text-slate-500 mt-1">{testimonial.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resources Download Section */}
-      <section className="py-20 px-6 md:px-12 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Download Product Resources
-            </h2>
-            <p className="text-xl text-slate-600">
-              Get detailed information about Palladium Accounting
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {resources.map((resource, i) => (
-              <a key={i} href="#" className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 hover:border-indigo-300 group">
-                <div className="flex flex-col items-center text-center">
-                  <div className="bg-indigo-100 p-4 rounded-xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform">
-                    {resource.icon}
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">{resource.title}</h3>
-                  <p className="text-sm text-slate-600 mb-4">{resource.type} • {resource.size}</p>
-                  <div className="flex items-center gap-2 text-indigo-600 font-semibold">
-                    <Download className="w-4 h-4" />
-                    <span>Download</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="py-20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
@@ -343,7 +280,7 @@ export default function PalladiumPage() {
             Ready to Transform Your Financial Management?
           </h2>
           <p className="text-xl mb-8 text-indigo-100">
-            Join 500+ Kenyan businesses using Palladium. Start your free 30-day trial today.
+            Join 500+ Kenyan businesses using Palladium. Read more on Palladium and downlaod it in our brochure.
           </p>
 
           {/* Brochure Buttons */}

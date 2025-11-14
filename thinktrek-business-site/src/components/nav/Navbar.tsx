@@ -32,7 +32,7 @@ export default function Navigation() {
     { name: 'Home', path: '/' },
     { name: 'Products', path: '/products' },
     { name: 'Partners', path: '/partners' },
-    { name: 'Blog', path: '/blog' },
+    // { name: 'Blog', path: '/blog' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
      

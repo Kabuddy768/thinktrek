@@ -19,6 +19,8 @@ import Login from "./components/auth/Login";
 import Verification from "./components/auth/Verification";
 import Register from "./components/auth/Register";
 import PartnersPage from "./pages/PartnersPage";
+import PrivacyPage from "./pages/PrivacyPage"
+import DocumentationPage from "./pages/DocumentationPage";
 
 export default function App() {
   return (
@@ -39,6 +41,8 @@ export default function App() {
              <Route path="/about" element={<AboutPage />} />
              <Route path="/contact" element={<ContactPage />} />
              <Route path="/partners" element={<PartnersPage />} />
+             <Route path="/privacy" element={<PrivacyPage />} />
+             <Route path="/documentation" element={<DocumentationPage />} />
              
              <Route path="/products/palladium-accounting" element={<PalladiumPage />} />
 <Route path="/products/iq-retail" element={<IqRetailPage />} />

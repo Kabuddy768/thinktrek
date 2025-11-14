@@ -113,25 +113,6 @@ export default function Hero() {
               Streamline your operations with cutting-edge <span className="text-cyan-400 font-semibold">accounting</span>, <span className="text-teal-400 font-semibold">ERP</span>, and <span className="text-emerald-400 font-semibold">warehouse management</span> solutions designed for Kenyan SMEs.
             </p>
           </div>
-
-          {/* CTAs with enhanced styling */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <button className="group relative bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-8 py-4 rounded-xl font-bold text-lg overflow-hidden shadow-xl shadow-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/40 transition-all transform hover:scale-105 active:scale-95">
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative flex items-center gap-2">
-                Request Free Demo
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </span>
-            </button>
-            
-            <button className="group relative bg-white/5 backdrop-blur-xl border-2 border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/20 transition-all">
-              <span className="flex items-center gap-2">
-                Explore Solutions
-                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </span>
-            </button>
-          </div>
-
           {/* Trust badges */}
           <div className={`flex flex-wrap justify-center gap-6 pt-4 transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {trustBadges.map((badge, idx) => (

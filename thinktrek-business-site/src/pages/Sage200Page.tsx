@@ -75,20 +75,7 @@ export default function Sage200Page() {
     { title: "Feature Comparison", type: "PDF", size: "1.9 MB", icon: <FileText /> }
   ]
 
-  const testimonials = [
-    {
-      quote: "Sage 200 gave us the financial control we needed to expand from 2 to 8 locations. Consolidation is now automatic.",
-      author: "Peter Muthoni",
-      role: "Finance Director, East Africa Distributors",
-      company: "500+ employees, 8 locations"
-    },
-    {
-      quote: "The BI capabilities transformed how we make decisions. We now have real-time visibility across all departments.",
-      author: "Sarah Njeri",
-      role: "CEO, Manufacturing Solutions Ltd",
-      company: "KES 2B+ annual revenue"
-    }
-  ]
+  
 
   const faqs = [
     {
@@ -163,16 +150,6 @@ export default function Sage200Page() {
               Trusted by 50,000+ businesses globally, Sage 200 delivers the power and flexibility mid-sized and growing enterprises need to compete and thrive.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
-              <button className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all">
-                Schedule Enterprise Demo
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="bg-white border-2 border-amber-600 text-amber-600 px-8 py-4 rounded-xl font-semibold flex items-center gap-2 hover:bg-amber-50 transition-all">
-                <Play className="w-5 h-5" />
-                Watch Overview
-              </button>
-            </div>
 
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="flex items-center gap-2 text-slate-600">
@@ -364,67 +341,7 @@ export default function Sage200Page() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-6 md:px-12 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Trusted by Enterprise Leaders
-            </h2>
-            <p className="text-xl text-slate-600">
-              See how Sage 200 powers business growth
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, i) => (
-              <div key={i} className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 shadow-md border border-amber-100">
-                <div className="mb-6">
-                  <Award className="w-12 h-12 text-amber-600 mb-4" />
-                  <p className="text-lg text-slate-700 italic mb-4">"{testimonial.quote}"</p>
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900">{testimonial.author}</p>
-                  <p className="text-sm text-slate-600">{testimonial.role}</p>
-                  <p className="text-xs text-slate-500 mt-1">{testimonial.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resources Section */}
-      <section className="py-20 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Download Enterprise Resources
-            </h2>
-            <p className="text-xl text-slate-600">
-              Detailed information about Sage 200
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {resources.map((resource, i) => (
-              <a key={i} href="#" className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 hover:border-amber-300 group">
-                <div className="flex flex-col items-center text-center">
-                  <div className="bg-amber-100 p-4 rounded-xl text-amber-600 mb-4 group-hover:scale-110 transition-transform">
-                    {resource.icon}
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">{resource.title}</h3>
-                  <p className="text-sm text-slate-600 mb-4">{resource.type} • {resource.size}</p>
-                  <div className="flex items-center gap-2 text-amber-600 font-semibold">
-                    <Download className="w-4 h-4" />
-                    <span>Download</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-20 px-6 md:px-12 bg-slate-50">
@@ -456,16 +373,24 @@ export default function Sage200Page() {
             Ready to Scale Your Business?
           </h2>
           <p className="text-xl mb-8 text-amber-100">
-            Join 50,000+ businesses worldwide. See Sage 200 in action with a personalized demo.
+            Join 50,000+ businesses worldwide. Read more about Sage 200 and download it in the brochure .
           </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="bg-white text-amber-600 px-8 py-4 rounded-xl font-bold hover:bg-amber-50 transition-all shadow-xl">
-              Schedule Enterprise Demo
-            </button>
-            <button className="bg-amber-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-amber-800 transition-all border-2 border-white/20">
-              Talk to Solutions Architect
-            </button>
+            <a
+              href="\brochures\Sage-200\sage-200-evolution-product-brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-amber-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-amber-800 transition-all border-2 border-white/20">
+              View Brochure
+            </a>
+
+            <a
+              href="\brochures\Sage-200\sage-200-evolution-product-brochure.pdf"
+              download="sage-200-evolution-product-brochure.pdf"
+               className="bg-amber-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-amber-800 transition-all border-2 border-white/20"
+            >
+              Download Brochure
+            </a>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-amber-100">

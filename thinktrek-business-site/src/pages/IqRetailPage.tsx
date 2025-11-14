@@ -142,7 +142,7 @@ export default function IqRetailPage() {
               From checkout to stock management, IQ Retail handles everything - so you can focus on growing your business and delighting customers.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            {/* <div className="flex flex-wrap gap-4 mb-8">
               <button className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all">
                 Start Free 30-Day Trial
                 <ArrowRight className="w-5 h-5" />
@@ -151,7 +151,7 @@ export default function IqRetailPage() {
                 <Play className="w-5 h-5" />
                 See It In Action
               </button>
-            </div>
+            </div> */}
 
             <div className="flex items-center gap-8 text-sm text-slate-600">
               <div className="flex items-center gap-2">
@@ -328,35 +328,7 @@ export default function IqRetailPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Real Results from Real Retailers
-            </h2>
-            <p className="text-xl text-slate-600">
-              Join hundreds of successful Kenyan retailers
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, i) => (
-              <div key={i} className="bg-gradient-to-br from-sky-50 to-cyan-50 rounded-2xl p-8 shadow-md border border-sky-100">
-                <div className="mb-6">
-                  <Award className="w-12 h-12 text-sky-600 mb-4" />
-                  <p className="text-lg text-slate-700 italic mb-4">"{testimonial.quote}"</p>
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900">{testimonial.author}</p>
-                  <p className="text-sm text-slate-600">{testimonial.role}</p>
-                  <p className="text-xs text-slate-500 mt-1">{testimonial.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Pricing Section */}
       <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-sky-600 to-cyan-600 text-white">
@@ -394,38 +366,6 @@ export default function IqRetailPage() {
         </div>
       </section>
 
-      {/* Resources Section */}
-      <section className="py-20 px-6 md:px-12 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Download Retail Resources
-            </h2>
-            <p className="text-xl text-slate-600">
-              Learn more about IQ Retail
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {resources.map((resource, i) => (
-              <a key={i} href="#" className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 hover:border-sky-300 group">
-                <div className="flex flex-col items-center text-center">
-                  <div className="bg-sky-100 p-4 rounded-xl text-sky-600 mb-4 group-hover:scale-110 transition-transform">
-                    {resource.icon}
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">{resource.title}</h3>
-                  <p className="text-sm text-slate-600 mb-4">{resource.type} • {resource.size}</p>
-                  <div className="flex items-center gap-2 text-sky-600 font-semibold">
-                    <Download className="w-4 h-4" />
-                    <span>Download</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="py-20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
@@ -456,17 +396,26 @@ export default function IqRetailPage() {
             Ready to Modernize Your Retail Business?
           </h2>
           <p className="text-xl text-slate-600 mb-8">
-            Join 300+ Kenyan retailers who switched to IQ Retail. Try it free for 30 days.
+            Join 300+ Kenyan retailers who switched to IQ Retail. Read or download brochure for rmore information.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all">
-              Start Free Trial
-            </button>
-            <button className="bg-white border-2 border-sky-600 text-sky-600 px-8 py-4 rounded-xl font-bold hover:bg-sky-50 transition-all">
-              Talk to Sales Team
-            </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href="\brochures\IQ-Retail\IQ-Business-Brochure-2019.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all">
+              View Brochure
+            </a>
+
+            <a
+              href="\brochures\IQ-Retail\IQ-Business-Brochure-2019.pdf"
+              download="sage-200-evolution-product-brochure.pdf"
+               className="bg-white border-2 border-sky-600 text-sky-600 px-8 py-4 rounded-xl font-bold hover:bg-sky-50 transition-all">
+              Download Brochure
+            </a>
           </div>
+
         </div>
       </section>
       <Footer/>

@@ -164,7 +164,7 @@ export default function XactErpPage() {
               Stop juggling disconnected systems. Xact ERP unifies production, inventory, quality, and financials in one powerful platform designed for operational excellence.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            {/* <div className="flex flex-wrap gap-4 mb-8">
               <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all">
                 See Live Demo
                 <ArrowRight className="w-5 h-5" />
@@ -173,7 +173,7 @@ export default function XactErpPage() {
                 <Play className="w-5 h-5" />
                 Watch Product Tour
               </button>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="flex items-center gap-2 text-slate-600">
@@ -397,67 +397,7 @@ export default function XactErpPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Manufacturing Leaders Trust Xact ERP
-            </h2>
-            <p className="text-xl text-slate-600">
-              Real results from real companies
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, i) => (
-              <div key={i} className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 shadow-md border border-emerald-100">
-                <div className="mb-6">
-                  <Award className="w-12 h-12 text-emerald-600 mb-4" />
-                  <p className="text-lg text-slate-700 italic mb-4">"{testimonial.quote}"</p>
-                </div>
-                <div>
-                  <p className="font-bold text-slate-900">{testimonial.author}</p>
-                  <p className="text-sm text-slate-600">{testimonial.role}</p>
-                  <p className="text-xs text-slate-500 mt-1">{testimonial.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resources Section */}
-      <section className="py-20 px-6 md:px-12 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Download Manufacturing Resources
-            </h2>
-            <p className="text-xl text-slate-600">
-              Everything you need to evaluate Xact ERP
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {resources.map((resource, i) => (
-              <a key={i} href="#" className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 hover:border-emerald-300 group">
-                <div className="flex flex-col items-center text-center">
-                  <div className="bg-emerald-100 p-4 rounded-xl text-emerald-600 mb-4 group-hover:scale-110 transition-transform">
-                    {resource.icon}
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">{resource.title}</h3>
-                  <p className="text-sm text-slate-600 mb-4">{resource.type} • {resource.size}</p>
-                  <div className="flex items-center gap-2 text-emerald-600 font-semibold">
-                    <Download className="w-4 h-4" />
-                    <span>Download</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* FAQ Section */}
       <section className="py-20 px-6 md:px-12">
