@@ -286,7 +286,7 @@ export default function PalladiumPage() {
           {/* Brochure Buttons */}
         <div className="flex justify-center gap-4 flex-wrap mt-8">
           <a
-            href="/brochures/Sage-200/sage-200-evolution-product-brochure.pdf"
+            href="\brochures\Palladium-Accounting\Palladium-Feature-Brochure.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-transparent border border-amber-600 text-amber-600 hover:bg-amber-50 px-6 py-3 rounded-full font-medium transition-all shadow-md"
@@ -296,7 +296,7 @@ export default function PalladiumPage() {
           </a>
 
           <a
-            href="/brochures/Sage-200/sage-200-evolution-product-brochure.pdf"
+            href="\brochures\Palladium-Accounting\Palladium-Feature-Brochure.pdf"
             download="sage-200-evolution-product-brochure.pdf"
             className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full font-medium transition-all shadow-md"
           >

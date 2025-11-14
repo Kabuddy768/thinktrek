@@ -334,9 +334,6 @@ export default function Sage200Page() {
 
           <div className="text-center mt-12">
             <p className="text-slate-600 mb-4">Plus 200+ more integrations via our partner ecosystem</p>
-            <button className="text-amber-600 font-semibold hover:text-amber-700 transition-colors">
-              View All Integrations →
-            </button>
           </div>
         </div>
       </section>
