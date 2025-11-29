@@ -1,17 +1,32 @@
 [
   {
-    "name": "TechCorp",
-    "logo": "/logos/techcorp.png",
-    "website": "https://techcorp.com"
+    "name": "5 Tea",
+    "logo": "/images/patners/5Tea.jpg",
+    "website": "https://5tea.co.ke/"
   },
   {
-    "name": "GreenEnergy",
-    "logo": "/logos/greenenergy.png",
-    "website": "https://greenenergy.io"
+    "name": "Abson",
+    "logo": "/images/patners/Abson.jpg",
+    "website": "https://absonmotors.com/"
   },
   {
-    "name": "FinEdge",
-    "logo": "/logos/finedge.png",
-    "website": "https://finedge.co"
+    "name": "AgVenture",
+    "logo": "/images/patners/AgVenture.jpg",
+    "website": "https://agvke.com/"
+  },
+  {
+    "name": "Cargo Lite",
+    "logo": "/images/patners/CargoLite.jpg",
+    "website": "https://www.cargo-lite.com/"
+  },
+  {
+    "name": "Liqour Library",
+    "logo": "/images/patners/Liqour.jpg",
+    "website": ""
+  },
+  {
+    "name": "Samis Bakers",
+    "logo": "/images/patners/SamisBakers.jpg",
+    "website": ""
   }
 ]
