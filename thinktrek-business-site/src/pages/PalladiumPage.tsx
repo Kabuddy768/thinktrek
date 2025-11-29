@@ -1,5 +1,6 @@
 import { TrendingUp, CheckCircle2, BarChart3, FileSpreadsheet, Globe, Shield, Users, Zap, Download, Play, FileText, Award, ArrowRight } from "lucide-react"
 import Footer from "../components/footer/Footer"
+import ProductInquiryForm from "../components/common/ProductInquiryForm"
 export default function PalladiumPage() {
   const features = [
     {
@@ -270,6 +271,12 @@ export default function PalladiumPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 md:px-12 bg-slate-50">
+        <div className="max-w-4xl mx-auto">
+          <ProductInquiryForm productName="Palladium Accounting" />
         </div>
       </section>
 

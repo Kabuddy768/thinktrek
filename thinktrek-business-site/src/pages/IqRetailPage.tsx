@@ -1,5 +1,6 @@
 import { Building2, CheckCircle2, BarChart3, Users, ShoppingBag, Package, CreditCard, Smartphone, TrendingUp, Download, Play, FileText, Award, ArrowRight, Zap, Clock } from "lucide-react"
 import Footer from "../components/footer/Footer"
+import ProductInquiryForm from "../components/common/ProductInquiryForm"
 
 export default function IqRetailPage() {
   const features = [
@@ -388,6 +389,11 @@ export default function IqRetailPage() {
           </div>
         </div>
       </section>
+      <section className="py-20 px-6 md:px-12 bg-slate-50">
+              <div className="max-w-4xl mx-auto">
+                <ProductInquiryForm productName="Iq Retail" />
+              </div>
+            </section>
 
       {/* Final CTA */}
       <section className="py-20 px-6 md:px-12 bg-slate-50">

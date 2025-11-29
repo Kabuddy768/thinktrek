@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Search, Award, Users, TrendingUp, ExternalLink, Filter, CheckCircle } from 'lucide-react';
 import Footer from "../components/footer/Footer"
+import { Link } from 'react-router-dom' // ✅ Imported for potential navigation
 export default function PartnersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -84,10 +85,26 @@ export default function PartnersPage() {
       since: "2022",
       testimonial: "Production planning became much more efficient",
       stats: { employees: "25+", locations: "1" }
-    }
+    },
+    {
+  id: 7,
+  name: "XtraMed",
+  logo: "/images/patners/Xtramed.jpg",
+  website: "https://www.xtramed.co.ke/",
+  category: "Healthcare",
+  industry: "Pharmaceutical Distribution",
+  description: "Leading pharmaceutical and medical supplies distributor providing quality healthcare products across Kenya and East Africa",
+  productsUsed: ["Sage 200", "Xact ERP"],
+  since: "2016",
+  testimonial: "Supply chain management and inventory tracking became significantly more efficient with Thinktrek's solutions",
+  stats: { 
+    employees: "40+", 
+    locations: "2" 
+  }
+}
   ];
 
-  const categories = ['all', 'Food & Beverage', 'Automotive', 'Agriculture', 'Logistics'];
+  const categories = ['all', 'Food & Beverage', 'Automotive', 'Agriculture', 'Logistics','Healthcare'];
 
   const filteredPartners = partners.filter(partner => {
     const matchesSearch = partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -287,14 +304,15 @@ export default function PartnersPage() {
             Join our growing community of successful businesses across Kenya
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-bold hover:bg-indigo-50 transition-all shadow-xl">
-              Become a Partner
-            </button>
-            <button className="bg-white/10 border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">
-              Contact Sales
-            </button>
-          </div>
+          <div className="mt-12">
+                        {/* CTA: Updated to gradient/teal/cyan for modern polish and strong visual weight */}
+                        <Link
+                            to="/contact"
+                            className="inline-block bg-gradient-to-r from-cyan-400 to-teal-500 text-gray-900 px-10 py-5 rounded-xl font-bold text-lg hover:bg-cyan-300 transition-all transform hover:scale-[1.05] shadow-2xl focus:outline-none focus:ring-4 focus:ring-cyan-300/50"
+                        >
+                            Get Started Today
+                        </Link>
+                    </div>
 
           <div className="flex flex-wrap justify-center gap-6 mt-10 text-sm">
             <div className="flex items-center gap-2">
