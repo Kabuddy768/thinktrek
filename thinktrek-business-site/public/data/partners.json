@@ -1,8 +1,19 @@
 [
   {
+    "id": 1,
     "name": "5 Tea",
     "logo": "/images/patners/5Tea.jpg",
-    "website": "https://5tea.co.ke/"
+    "website": "https://5tea.co.ke/",
+    "category": "Food & Beverage",
+    "industry": "Retail",
+    "description": "Leading tea distributor specializing in premium blends and wholesale supply",
+    "productsUsed": ["IQ Retail", "Xact ERP"],
+    "since": "2019",
+    "testimonial": "Thinktrek's solutions streamlined our inventory management significantly",
+    "stats": {
+      "employees": "50+",
+      "locations": "3"
+    }
   },
   {
     "name": "Abson",
