@@ -16,7 +16,7 @@ export default function PartnersPage() {
       category: "Food & Beverage",
       industry: "Retail",
       description: "Leading tea distributor specializing in premium blends and wholesale supply",
-      productsUsed: ["IQ Retail", "Xact ERP"],
+      productsUsed: ["Palladium Accounting"],
       since: "2019",
       testimonial: "Thinktrek's solutions streamlined our inventory management",
       stats: { employees: "50+", locations: "3" }
@@ -29,7 +29,7 @@ export default function PartnersPage() {
       category: "Automotive",
       industry: "Sales & Service",
       description: "Trusted automotive dealer with comprehensive vehicle sales and maintenance",
-      productsUsed: ["Sage 200", "Palladium Accounting"],
+      productsUsed: ["Palladium Accounting"],
       since: "2018",
       testimonial: "Financial management became effortless with their software",
       stats: { employees: "100+", locations: "2" }
@@ -42,7 +42,7 @@ export default function PartnersPage() {
       category: "Agriculture",
       industry: "Distribution",
       description: "Agricultural input supplier supporting farmers with quality products",
-      productsUsed: ["Xact ERP", "IQ Retail"],
+      productsUsed: ["Palladium Accounting"],
       since: "2020",
       testimonial: "Supply chain visibility improved dramatically",
       stats: { employees: "30+", locations: "5" }
@@ -55,7 +55,7 @@ export default function PartnersPage() {
       category: "Logistics",
       industry: "Transport",
       description: "Efficient cargo and logistics solutions across East Africa",
-      productsUsed: ["Sage 200", "Xact ERP"],
+      productsUsed: ["Palladium Accounting"],
       since: "2017",
       testimonial: "Real-time tracking transformed our operations",
       stats: { employees: "200+", locations: "7" }
@@ -68,7 +68,7 @@ export default function PartnersPage() {
       category: "Food & Beverage",
       industry: "Retail",
       description: "Premium spirits and wine retail with curated selection",
-      productsUsed: ["IQ Retail"],
+      productsUsed: ["Palladium Accounting"],
       since: "2021",
       testimonial: "POS system made checkout seamless",
       stats: { employees: "15+", locations: "2" }
@@ -81,7 +81,7 @@ export default function PartnersPage() {
       category: "Food & Beverage",
       industry: "Manufacturing",
       description: "Artisan bakery delivering fresh products daily",
-      productsUsed: ["Xact ERP", "Palladium Accounting"],
+      productsUsed: ["Palladium Accounting"],
       since: "2022",
       testimonial: "Production planning became much more efficient",
       stats: { employees: "25+", locations: "1" }
@@ -94,7 +94,7 @@ export default function PartnersPage() {
   category: "Healthcare",
   industry: "Pharmaceutical Distribution",
   description: "Leading pharmaceutical and medical supplies distributor providing quality healthcare products across Kenya and East Africa",
-  productsUsed: ["Sage 200", "Xact ERP"],
+  productsUsed: ["Palladium Accounting"],
   since: "2016",
   testimonial: "Supply chain management and inventory tracking became significantly more efficient with Thinktrek's solutions",
   stats: { 
