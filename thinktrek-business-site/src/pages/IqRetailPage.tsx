@@ -331,7 +331,7 @@ export default function IqRetailPage() {
 
       
 
-      {/* Pricing Section */}
+      {/* Pricing Section
       <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-sky-600 to-cyan-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4">
@@ -365,7 +365,7 @@ export default function IqRetailPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="py-20 px-6 md:px-12">
