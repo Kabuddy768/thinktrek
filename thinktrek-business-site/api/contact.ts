@@ -27,7 +27,8 @@ export default async function handler(
     // Destructuring { data, error } is the standard way to handle Resend's 2025/2026 SDK
     const { data, error } = await resend.emails.send({
       from: 'Thinktrek Contact Form <onboarding@resend.dev>', // Update to your verified domain later
-      to: ['Davidk@thinktrek.co.ke'],
+      to: ['benmwangi968@gmail.com'],
+    //   to: ['Davidk@thinktrek.co.ke'],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>

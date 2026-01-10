@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle, MessageSquare, Headphones, Sparkles, Zap, Award } from 'lucide-react';
+import toast from 'react-hot-toast'; // ✅ Already imported
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -30,7 +31,8 @@ export default function ContactPage() {
   //   setStatus({ type: '', message: '' });
 
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
   setIsSubmitting(true);
   setStatus({ type: '', message: '' });
 
@@ -61,6 +63,7 @@ export default function ContactPage() {
         message: 'Thank you! Your message has been sent. We\'ll respond within 24 hours.'
       });
       
+       toast.success('Message sent successfully!'); // ✅ Add toast notification
       // Reset form after successful submission
       setTimeout(() => {
         setFormData({
@@ -78,6 +81,7 @@ export default function ContactPage() {
         type: 'error',
         message: data.error || 'Failed to send message. Please try again.'
       });
+      toast.error('Network error. Please try again.'); // ✅ Add toast
     }
   } catch (error) {
     setStatus({

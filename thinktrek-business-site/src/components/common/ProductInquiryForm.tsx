@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import toast from 'react-hot-toast'; // ✅ Already imported
+
 
 interface Props {
   productName: string;
@@ -43,10 +45,10 @@ export default function ProductInquiryForm({ productName }: Props) {
           setSubmitted(false);
         }, 3000);
       } else {
-        alert(data.error || 'Failed to send inquiry. Please try again.');
+        toast.error(data.error || 'Failed to send inquiry. Please try again.');
       }
     } catch (error) {
-      alert('Network error. Please check your connection and try again.');
+      toast.error('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
