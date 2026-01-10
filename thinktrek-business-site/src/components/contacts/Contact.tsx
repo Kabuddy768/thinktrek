@@ -29,40 +29,97 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 
-    const subject = `New Contact Inquiry from ${formData.name}`;
-    const body = `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Company: ${formData.company}
-Product Interest: ${formData.interest}
+//     const subject = `New Contact Inquiry from ${formData.name}`;
+//     const body = `
+// Name: ${formData.name}
+// Email: ${formData.email}
+// Phone: ${formData.phone}
+// Company: ${formData.company}
+// Product Interest: ${formData.interest}
 
-Message:
-${formData.message}
-    `;
+// Message:
+// ${formData.message}
+//     `;
     
-    const mailtoLink = `mailto:Davidk@thinktrek.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+//     const mailtoLink = `mailto:Davidk@thinktrek.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+//     window.location.href = mailtoLink;
 
+//     setStatus({
+//       type: 'success',
+//       message: 'Your email client will open shortly. Thank you for reaching out!'
+//     });
+//     setIsSubmitting(false);
+    
+//     setTimeout(() => {
+//       setFormData({
+//         name: '',
+//         email: '',
+//         phone: '',
+//         company: '',
+//         interest: '',
+//         message: ''
+//       });
+//       setStatus({ type: '', message: '' });
+//     }, 2000);
+//   };
+  const handleSubmit = async () => {
+  setIsSubmitting(true);
+  setStatus({ type: '', message: '' });
+
+  // Validate required fields
+  if (!formData.name || !formData.email || !formData.message) {
     setStatus({
-      type: 'success',
-      message: 'Your email client will open shortly. Thank you for reaching out!'
+      type: 'error',
+      message: 'Please fill in all required fields (Name, Email, Message)'
     });
     setIsSubmitting(false);
-    
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        interest: '',
-        message: ''
-      });
-      setStatus({ type: '', message: '' });
-    }, 2000);
-  };
+    return;
+  }
 
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setStatus({
+        type: 'success',
+        message: 'Thank you! Your message has been sent. We\'ll respond within 24 hours.'
+      });
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          interest: '',
+          message: ''
+        });
+        setStatus({ type: '', message: '' });
+      }, 3000);
+    } else {
+      setStatus({
+        type: 'error',
+        message: data.error || 'Failed to send message. Please try again.'
+      });
+    }
+  } catch (error) {
+    setStatus({
+      type: 'error',
+      message: 'Network error. Please check your connection and try again.'
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   const contactInfo = [
     {
       icon: <Mail size={22} />,
@@ -453,4 +510,5 @@ ${formData.message}
       </section>
     </div>
   );
+}
 }
