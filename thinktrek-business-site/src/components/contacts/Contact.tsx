@@ -25,43 +25,11 @@ export default function ContactPage() {
       [e.target.name]: e.target.value
     });
   };
-  const handleSubmit = () => {
-    setIsSubmitting(true);
-    setStatus({ type: '', message: '' });
+  // const handleSubmit = () => {
+  //   setIsSubmitting(true);
+  //   setStatus({ type: '', message: '' });
 
-//     const subject = `New Contact Inquiry from ${formData.name}`;
-//     const body = `
-// Name: ${formData.name}
-// Email: ${formData.email}
-// Phone: ${formData.phone}
-// Company: ${formData.company}
-// Product Interest: ${formData.interest}
 
-// Message:
-// ${formData.message}
-//     `;
-    
-//     const mailtoLink = `mailto:Davidk@thinktrek.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-//     window.location.href = mailtoLink;
-
-//     setStatus({
-//       type: 'success',
-//       message: 'Your email client will open shortly. Thank you for reaching out!'
-//     });
-//     setIsSubmitting(false);
-    
-//     setTimeout(() => {
-//       setFormData({
-//         name: '',
-//         email: '',
-//         phone: '',
-//         company: '',
-//         interest: '',
-//         message: ''
-//       });
-//       setStatus({ type: '', message: '' });
-//     }, 2000);
-//   };
   const handleSubmit = async () => {
   setIsSubmitting(true);
   setStatus({ type: '', message: '' });
@@ -510,5 +478,4 @@ export default function ContactPage() {
       </section>
     </div>
   );
-}
 }

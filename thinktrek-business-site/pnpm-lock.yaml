@@ -74,7 +74,7 @@ importers:
         version: 9.38.0
       '@types/node':
         specifier: ^24.6.0
-        version: 16.18.11
+        version: 24.9.1
       '@types/react':
         specifier: ^19.1.16
         version: 19.2.2
@@ -104,7 +104,7 @@ importers:
         version: 8.5.6
       typescript:
         specifier: ~5.9.3
-        version: 4.9.5
+        version: 5.9.3
       typescript-eslint:
         specifier: ^8.45.0
         version: 8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)
@@ -2686,7 +2686,6 @@ snapshots:
   '@types/node@24.9.1':
     dependencies:
       undici-types: 7.16.0
-    optional: true
 
   '@types/react-dom@19.2.2(@types/react@19.2.2)':
     dependencies:
@@ -3896,8 +3895,7 @@ snapshots:
 
   typescript@5.9.3: {}
 
-  undici-types@7.16.0:
-    optional: true
+  undici-types@7.16.0: {}
 
   undici@5.28.4:
     dependencies:
