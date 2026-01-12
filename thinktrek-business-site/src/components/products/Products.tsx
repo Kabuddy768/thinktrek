@@ -42,15 +42,23 @@ export default function ProductShowcase() {
         'Multi-Currency Support',
         'Complete Audit Trail & Compliance'
       ],
-      icon: <TrendingUp className="w-7 h-7" />,
+      // icon: <TrendingUp className="w-7 h-7" />,
+      icon: (
+    <img 
+      src="/images/products/Palladium-logo-3COL-REV-ex.webp" 
+      alt="Palladium Accounting Logo"
+      className="h-8 w-auto object-contain"
+    />
+  ),
       stats: { value: '99.9%', label: 'Uptime' },
+
       accentColor: {
-        primary: 'rgb(99, 102, 241)',
-        secondary: 'rgb(139, 92, 246)',
-        gradient: 'from-indigo-500 to-violet-500',
-        border: 'border-indigo-200',
-        bg: 'bg-indigo-50',
-        hover: 'hover:border-indigo-300'
+        primary: 'rgb(15, 23, 42)',     // Updated: Dark color for the shadow glow
+        secondary: 'rgb(0, 0, 0)',      // Updated: Secondary dark color
+        gradient: 'from-slate-800 to-black', // Updated: This makes the icon background black
+        border: 'border-slate-200',     // Updated: Neutral border to match black theme
+        bg: 'bg-slate-50',              // Updated: Neutral background
+        hover: 'hover:border-slate-400' // Updated: Darker hover border
       }
     },
     {
@@ -63,7 +71,15 @@ export default function ProductShowcase() {
         'Advanced Sales Analytics',
         'Integrated CRM & Loyalty Programs'
       ],
-      icon: <Building2 className="w-7 h-7" />,
+      // icon: <Building2 className="w-7 h-7" />,
+      icon: (
+      <img 
+        src=" \images\products\IqRetail.png"
+        alt="Iq Retail Logo" 
+        // className="w-7 h-7 object-contain" // object-contain keeps the aspect ratio
+        className="h-12 w-auto object-contain"
+      />
+       ),
       stats: { value: '200+', label: 'Retail Clients' },
       accentColor: {
         primary: 'rgb(14, 165, 233)',
@@ -84,7 +100,15 @@ export default function ProductShowcase() {
         'Smart Warehouse Automation',
         'Quality Control & Compliance'
       ],
-      icon: <Globe className="w-7 h-7" />,
+      
+      icon: (
+      <img 
+        src=" \images\products\xact-erp-logo.png"
+        alt="Xact Erp Logo" 
+       
+        className="h-10 w-auto object-contain"
+      />
+       ),
       stats: { value: '40%', label: 'Cost Reduction' },
       accentColor: {
         primary: 'rgb(16, 185, 129)',
@@ -94,6 +118,7 @@ export default function ProductShowcase() {
         bg: 'bg-emerald-50',
         hover: 'hover:border-emerald-300'
       }
+       
     },
     {
       name: 'Sage 200',
@@ -105,15 +130,24 @@ export default function ProductShowcase() {
         'Seamless CRM Integration',
         'Secure Cloud & On-Premise Options'
       ],
-      icon: <Shield className="w-7 h-7" />,
+     
+      icon: (
+      <img 
+        src="\images\products\Sage-Logo.png"
+        alt="Sage 200 Logo" 
+        
+        className=" w-36y h-20  object-contain"
+      />
+       ),
       stats: { value: '50K+', label: 'Global Users' },
+    
       accentColor: {
-        primary: 'rgb(245, 158, 11)',
-        secondary: 'rgb(251, 146, 60)',
-        gradient: 'from-amber-500 to-orange-500',
-        border: 'border-amber-200',
-        bg: 'bg-amber-50',
-        hover: 'hover:border-amber-300'
+        primary: 'rgb(15, 23, 42)',     // Updated: Dark color for the shadow glow
+        secondary: 'rgb(0, 0, 0)',      // Updated: Secondary dark color
+        gradient: 'from-slate-800 to-black', // Updated: This makes the icon background black
+        border: 'border-slate-200',     // Updated: Neutral border to match black theme
+        bg: 'bg-slate-50',              // Updated: Neutral background
+        hover: 'hover:border-slate-400' // Updated: Darker hover border
       }
     }
   ]
