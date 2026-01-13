@@ -31,67 +31,139 @@ export default function ContactPage() {
   //   setStatus({ type: '', message: '' });
 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setStatus({ type: '', message: '' });
+//   const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+//   setIsSubmitting(true);
+//   setStatus({ type: '', message: '' });
 
-  // Validate required fields
-  if (!formData.name || !formData.email || !formData.message) {
-    setStatus({
-      type: 'error',
-      message: 'Please fill in all required fields (Name, Email, Message)'
-    });
-    setIsSubmitting(false);
-    return;
-  }
+//   // Validate required fields
+//   if (!formData.name || !formData.email || !formData.message) {
+//     setStatus({
+//       type: 'error',
+//       message: 'Please fill in all required fields (Name, Email, Message)'
+//     });
+//     setIsSubmitting(false);
+//     return;
+//   }
 
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+//   try {
+//     const response = await fetch('/api/contact', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(formData),
+//     });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    if (response.ok) {
-      setStatus({
-        type: 'success',
-        message: 'Thank you! Your message has been sent. We\'ll respond within 24 hours.'
-      });
+//     if (response.ok) {
+//       setStatus({
+//         type: 'success',
+//         message: 'Thank you! Your message has been sent. We\'ll respond within 24 hours.'
+//       });
       
-       toast.success('Message sent successfully!'); // ✅ Add toast notification
-      // Reset form after successful submission
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          interest: '',
-          message: ''
-        });
-        setStatus({ type: '', message: '' });
-      }, 3000);
-    } else {
+//        toast.success('Message sent successfully!'); // ✅ Add toast notification
+//       // Reset form after successful submission
+//       setTimeout(() => {
+//         setFormData({
+//           name: '',
+//           email: '',
+//           phone: '',
+//           company: '',
+//           interest: '',
+//           message: ''
+//         });
+//         setStatus({ type: '', message: '' });
+//       }, 3000);
+//     } else {
+//       setStatus({
+//         type: 'error',
+//         message: data.error || 'Failed to send message. Please try again.'
+//       });
+//       toast.error('Network error. Please try again.'); // ✅ Add toast
+//     }
+//   } catch (error) {
+//     setStatus({
+//       type: 'error',
+//       message: 'Network error. Please check your connection and try again.'
+//     });
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
+
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.message) {
       setStatus({
         type: 'error',
-        message: data.error || 'Failed to send message. Please try again.'
+        message: 'Please fill in all required fields (Name, Email, Message)'
       });
-      toast.error('Network error. Please try again.'); // ✅ Add toast
+      setIsSubmitting(false);
+      return;
     }
-  } catch (error) {
-    setStatus({
-      type: 'error',
-      message: 'Network error. Please check your connection and try again.'
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent. We\'ll respond within 24 hours.'
+        });
+        
+        toast.success('Message sent successfully!');
+
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            interest: '',
+            message: ''
+          });
+          setStatus({ type: '', message: '' });
+        }, 3000);
+      } else {
+        // 🛑 FIX IS HERE: We extract the specific message string
+        // Resend usually sends: { error: { message: "..." } } or just { error: "..." }
+        const errorMessage = data.error?.message || data.error || 'Failed to send message.';
+        
+        setStatus({
+          type: 'error',
+          message: errorMessage
+        });
+        toast.error(errorMessage); 
+      }
+    } catch (error) {
+      console.error(error); // Helpful to log this
+      setStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.'
+      });
+      toast.error('Network error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+
   const contactInfo = [
     {
       icon: <Mail size={22} />,
